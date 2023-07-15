@@ -1,0 +1,2 @@
+if you have token in userid can pass login page.
+if not you need to login twice for create token.
