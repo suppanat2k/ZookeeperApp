@@ -4,14 +4,15 @@ abstract class AuthenticateState extends Equatable {
   final String username;
   final String password;
   final String role;
-  const AuthenticateState({required this.username, required this.password,required this.role});
+  final int userId;
+  const AuthenticateState({required this.username, required this.password,required this.role,required this.userId});
 
   @override
-  List<Object> get props => [username, password,role];
+  List<Object> get props => [username, password,role,userId];
 }
 
 class AuthenticateInitial extends AuthenticateState {
-  const AuthenticateInitial({required super.username, required super.password, required super.role});
+  const AuthenticateInitial({required super.username, required super.password, required super.role, required super.userId});
 }
 
 class Authenticated extends AuthenticateState {
@@ -24,19 +25,23 @@ class Authenticated extends AuthenticateState {
 
   @override
   // ignore: overridden_fields
-  final String role;
-  const Authenticated(
-      {required this.username, required this.password, required this.role})
-      : super(username: username, password: password,role: role);
+  final int userId;
 
   @override
-  List<Object> get props => [username, password, role];
+  // ignore: overridden_fields
+  final String role;
+  const Authenticated( 
+      {required this.username, required this.password, required this.role,required this.userId})
+      : super(username: username, password: password,role: role,userId: userId);
+
+  @override
+  List<Object> get props => [username, password, role,userId];
 }
 
 class UnAuthenticated extends AuthenticateState {
-  const UnAuthenticated({required super.username, required super.password, required super.role});
+  const UnAuthenticated({required super.username, required super.password, required super.role, required super.userId});
 }
 
 class AuthenticateLoading extends AuthenticateState {
-  const AuthenticateLoading({required super.username, required super.password, required super.role});
+  const AuthenticateLoading({required super.username, required super.password, required super.role, required super.userId});
 }

@@ -4,7 +4,6 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import 'package:zookeeper_app/models/users_model.dart';
 
 class UserRepositories {
   static String get hostUrl => dotenv.get("API_HOST", fallback: "");
@@ -22,26 +21,32 @@ class UserRepositories {
   }
 
   Future usernameRead() async {
-    var value = storage.read(key: "username");
+    var value = await storage.read(key: "username");
     return value;
   }
 
   Future passwordRead() async {
-    var value = storage.read(key: "password");
+    var value = await storage.read(key: "password");
     return value;
   }
 
   Future roleRead() async {
-    var value = storage.read(key: "role");
+    var value = await storage.read(key: "role");
+    return value;
+  }
+
+  Future idRead() async {
+    var value = await storage.read(key: "userId");
     return value;
   }
 
   Future<void> preToken(
-      String token, String username, String password, String role) async {
+      String token, String username, String password, String role,int userId) async {
     await storage.write(key: "token", value: token);
     await storage.write(key: "username", value: username);
     await storage.write(key: "password", value: password);
     await storage.write(key: "role", value: role);
+    await storage.write(key: "userId", value: userId.toString());
   }
 
   Future<void> deleteToken() async {

@@ -1,3 +1,4 @@
+// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:zookeeper_app/bloc/authenticate_bloc/authenticate_bloc.dart';
@@ -21,11 +22,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         final username = usersFromJson(users).username;
         final password = usersFromJson(users).password;
         final role = usersFromJson(users).role;
+        final userId = usersFromJson(users).userId;
         authenticateBloc.add(
-            LoggedIn(token: token, username: username, password: password,role: role));
+            LoggedIn(token: token, username: username, password: password,role: role,userId:userId));
         emit(LoginSuccess(username: event.username, password: event.password));
       } catch (e) {
-        emit(const LoginFailed(password: '', username: ''));
+        emit(LoginFailed(e.toString(),password: '', username: ''));
       }
     });
   }

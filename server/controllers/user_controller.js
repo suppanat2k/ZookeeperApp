@@ -48,30 +48,3 @@ exports.getUsers = async (req, res) => {
         return res.status(500).send();
     }
 }
-
-// exports.getUserLogout = async (req, res) => {
-//     try {      
-//         const { username, password } = req.body;
-//         if (!(username && password)) {
-//             return res.status(400).send("Please enter your username or password..");
-//         }
-//         connection.query("SELECT * FROM users WHERE username=?", [username],async (error, result, fields)  => {
-//             if (error) {
-//                 console.log(error);
-//                 return res.status(400).send();
-//             }
-//             if (result[0] && (await bcrypt.compare(password, result[0].password))) {
-//                 const token = null;
-//                 result[0].token = token;
-//                 connection.query("UPDATE users SET token=? WHERE username=?", [token,username])
-//                 res.status(200).json(result[0])           
-//             }else{
-//                 res.status(404).send("Username or Password wrong!")
-//             }
-//         })
-        
-//     } catch (err) {
-//         console.log(err);
-//         return res.status(500).send();
-//     }
-// }

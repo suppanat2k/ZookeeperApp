@@ -9,14 +9,14 @@ Users usersFromJson(String str) => Users.fromJson(json.decode(str));
 String usersToJson(Users data) => json.encode(data.toJson());
 
 class Users {
-    int? userId;
+    int userId;
     String role;
     String username;
     String password;
     dynamic token;
 
     Users({
-        this.userId,
+        required this.userId,
         required this.role,
         required this.username,
         required this.password,
